@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Compétences - Bibiche Sangwa</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome pour les icônes (logos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+     <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #7672fa 0%, #e285d9 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    flex: 1;
+}
+
+/* ----- Sidebar ----- */
+.sidebar {
+    width: 300px;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    color: #ecf0f1;
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 4px solid #0f3460;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.profile .title {
+    color: #a8a8a8;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.contact-info h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.contact-info p {
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+.contact-info a {
+    color: #e94560;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #ff6b6b;
+}
+
+.social-links i {
+    margin-right: 5px;
+}
+
+/* ----- Contenu Principal ----- */
+.content {
+    flex: 1;
+    padding: 50px 40px;
+    background-color: #fff;
+}
+
+.content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #16213e;
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, #e94560, #0f3460);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* ----- Grille de Compétences avec Logos ----- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.skill-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #e94560, #0f3460);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(233, 69, 96, 0.15);
+}
+
+.skill-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Zone des logos */
+.skill-icon {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+}
+
+/* Couleurs spécifiques pour chaque logo */
+.html-icon {
+    color: #e44d26;
+    filter: drop-shadow(0 4px 6px rgba(228, 77, 38, 0.3));
+}
+
+.css-icon {
+    color: #264de4;
+    filter: drop-shadow(0 4px 6px rgba(38, 77, 228, 0.3));
+}
+
+.js-icon {
+    color: #f7df1e;
+    filter: drop-shadow(0 4px 6px rgba(247, 223, 30, 0.3));
+}
+
+.php-icon {
+    color: #777bb3;
+    filter: drop-shadow(0 4px 6px rgba(119, 123, 179, 0.3));
+}
+
+.git-icon {
+    color: #f1502f;
+    filter: drop-shadow(0 4px 6px rgba(241, 80, 47, 0.3));
+}
+
+.github-icon {
+    color: #333;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.seo-icon {
+    color: #27ae60;
+    margin-right: 10px;
+}
+
+.responsive-icon {
+    color: #3498db;
+    margin-right: 10px;
+}
+
+/* Animation des logos au survol */
+.skill-card:hover .skill-icon i {
+    animation: bounce 0.5s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: #16213e;
+    font-size: 1.1rem;
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    background: linear-gradient(135deg, #e94560, #ff6b6b);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(233, 69, 96, 0.3);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e94560, #0f3460);
+    border-radius: 10px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skill-description {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* ----- Navigation ----- */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    border-top: 2px solid #f0f0f0;
+    padding-top: 30px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #16213e;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-btn i {
+    font-size: 1.1rem;
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #e94560, #ff6b6b);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+}
+
+.nav-btn.active {
+    background: linear-gradient(135deg, #16213e, #1a1a2e);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(22, 33, 62, 0.3);
+}
+
+/* ----- Footer ----- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ----- Responsive Design ----- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 20px;
+        border-radius: 15px;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        justify-content: center;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-icon {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 30px 20px;
+    }
+
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Barre latérale -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar-placeholder">
+                    <img src="bibi.jpg" alt="Bibiche Sangwa" class="avatar-img">
+                </div>
+                <h1>Bibiche Sangwa</h1>
+                <p class="title">Rédactrice & Développeuse</p>
+            </div>
+            <div class="contact-info">
+                <h3>Téléphone</h3>
+                <p>+243 971499089</p>
+                <h3>E-mail</h3>
+                <p>bibichezugu2006@gmail.com</p>
+                <h3>Suivez-moi</h3>
+                <p class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+                    <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                </p>
+            </div>
+       </aside>
+
+        <!-- Contenu principal -->
+        <main class="content">
+            <h2>Mes compétences</h2>
+            <p class="section-subtitle">Ce que je maîtrise</p>
+
+            <!-- Grille de compétences avec logos -->
+            <div class="skills-grid">
+                <!-- HTML5 & CSS3 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5 html-icon"></i>
+                        <i class="fab fa-css3-alt css-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">HTML5 & CSS3</span>
+                        <span class="skill-level">Avancé</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+                    <p class="skill-description">Création de structures sémantiques et de designs modernes et responsives.</p>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-js js-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-level">Intermédiaire</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                    <p class="skill-description">Manipulation du DOM, création d'éléments interactifs et asynchrone.</p>
+                </div>
+
+                <!-- PHP -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-php php-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">PHP</span>
+                        <span class="skill-level">Débutant</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                    <p class="skill-description">Notions de base pour la génération de contenu dynamique.</p>
+                </div>
+
+                <!-- Git & GitHub -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-git-alt git-icon"></i>
+                        <i class="fab fa-github github-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">Git & GitHub</span>
+                        <span class="skill-level">Intermédiaire</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <p class="skill-description">Gestion de versions, travail collaboratif et branches.</p>
+                </div>
+
+                <!-- Rédaction web & SEO -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-pen-fancy seo-icon"></i>
+                        <i class="fas fa-chart-line seo-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">Rédaction web & SEO</span>
+                        <span class="skill-level">Avancé</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <p class="skill-description">Création de contenu optimisé pour les moteurs de recherche.</p>
+                </div>
+
+                <!-- Design responsive -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt responsive-icon"></i>
+                        <i class="fas fa-tablet-alt responsive-icon"></i>
+                        <i class="fas fa-laptop responsive-icon"></i>
+                    </div>
+                    <div class="skill-header">
+                        <span class="skill-name">Design responsive</span>
+                        <span class="skill-level">Avancé</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%;"></div>
+                    </div>
+                    <p class="skill-description">Adaptation parfaite à tous les écrans (mobile, tablette, desktop).</p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-buttons">
+                <a href="accueil.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+                <a href="competences.html" class="nav-btn active"><i class="fas fa-code"></i> Compétences</a>
+                <a href="projets.html" class="nav-btn"><i class="fas fa-project-diagram"></i> Projets</a>
+                <a href="contact.html" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© bbc project 2026. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

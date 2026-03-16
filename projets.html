@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibiche Sangwa - Projets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .projects-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e94560, #0f3460);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.15);
+        }
+
+        .project-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-header {
+            padding: 25px 25px 15px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            color: #16213e;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-header h3 i {
+            color: #e94560;
+            font-size: 1.8rem;
+        }
+
+        .expand-icon {
+            color: #e94560;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .project-item.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .project-preview {
+            padding: 0 25px 20px 25px;
+            color: #555;
+            font-size: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: linear-gradient(135deg, #fafafa, #f5f5f5);
+        }
+
+        .project-item.expanded .project-details {
+            max-height: 800px;
+        }
+
+        .details-content {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .project-description-full {
+            color: #333;
+        }
+
+        .project-description-full h4 {
+            color: #16213e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .project-description-full p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .tech-stack {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-stack h4 {
+            color: #16213e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(233, 69, 96, 0.2);
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li i {
+            color: #e94560;
+            width: 20px;
+        }
+
+        * Style des boutons avec bordure */
+.btn {
+    border: 2px solid transparent !important;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+    color: #16213e !important;
+    padding: 12px 25px !important;
+    border-radius: 50px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Bordure au survol */
+.btn:hover {
+    border-color: #e94560 !important;
+    background: linear-gradient(135deg, #e94560, #ff6b6b) !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3) !important;
+}
+
+/* Style spécifique pour les boutons dans les projets */
+.tech-stack .btn {
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 10px 20px !important;
+    font-size: 0.9rem;
+}
+
+        .project-image-preview {
+            grid-column: span 2;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image-preview {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar-placeholder">
+                    <img src="bibi.jpg" alt="profile" class="avatar-placeholder">
+                </div>
+                <h1>Bibiche Sangwa</h1>
+                <p class="title">Rédactrice & Développeuse</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>TÉLÉPHONE</h3>
+                <p>+243 971499089</p>
+
+                <h3>E-MAIL</h3>
+                <p>bibichezugu2006@gmail.com</p>
+
+                <h3>SUIVEZ-MOI</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1 class="page-title">Mes projets</h1>
+            <p class="section-subtitle">Réalisations récentes</p>
+
+            <div class="projects-showcase">
+                <!-- Projet 1: Portfolio Personnel -->
+                <div class="project-item" id="project1">
+                    <div class="project-header" onclick="toggleProject(this)">
+                        <h3>
+                            <i class="fas fa-user-circle"></i>
+                            Portfolio personnel
+                        </h3>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="project-preview">
+                        Site vitrine en HTML/CSS présentant mes compétences et projets.
+                    </div>
+                    <div class="project-details">
+                        <div class="details-content">
+                            <div class="project-description-full">
+                                <h4>À propos du projet</h4>
+                                <p>Ce portfolio personnel a été conçu pour présenter mes compétences en développement web et mon parcours professionnel. L'objectif était de créer un site vitrine moderne, responsive et accessible.</p>
+                                <p>Le design met en avant une interface épurée avec une navigation intuitive. La page d'accueil présente mon profil, tandis que les sections compétences, projets et contact permettent aux visiteurs de découvrir mon travail.</p>
+                                <h4 style="margin-top: 20px;">Fonctionnalités</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check-circle"></i> Design responsive (mobile, tablette, desktop)</li>
+                                    <li><i class="fas fa-check-circle"></i> Navigation fluide entre les sections</li>
+                                    <li><i class="fas fa-check-circle"></i> Formulaire de contact fonctionnel</li>
+                                    <li><i class="fas fa-check-circle"></i> Animations CSS au survol</li>
+                                    <li><i class="fas fa-check-circle"></i> Structure sémantique HTML5</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <h4>Technologies utilisées</h4>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">Flexbox</span>
+                                    <span class="tech-tag">Grid</span>
+                                    <span class="tech-tag">Responsive Design</span>
+                                </div>
+                                <h4 style="margin-top: 20px;">Lien du projet</h4>
+                                <a href="#" class="btn-view-project">
+                                    <i class="fab fa-github"></i> Voir sur GitHub
+                                </a>
+                                <a href="#" class="btn-view-project" style="margin-left: 10px;">
+                                    <i class="fas fa-external-link-alt"></i> Demo en ligne
+                                </a>
+                            </div>
+                            <div class="project-image-preview">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2: Blog Voyage -->
+                <div class="project-item" id="project2">
+                    <div class="project-header" onclick="toggleProject(this)">
+                        <h3>
+                            <i class="fas fa-plane"></i>
+                            Blog voyage
+                        </h3>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="project-preview">
+                        Maquette de blog responsive avec articles et galerie photos.
+                    </div>
+                    <div class="project-details">
+                        <div class="details-content">
+                            <div class="project-description-full">
+                                <h4>À propos du projet</h4>
+                                <p>Ce projet est un blog de voyage conçu pour partager des expériences et des conseils de voyage. La maquette met l'accent sur une expérience utilisateur immersive avec une galerie photo attrayante.</p>
+                                <p>Le design utilise des cartes pour les articles, une mise en page de galerie responsive et des éléments interactifs pour améliorer la navigation.</p>
+                                <h4 style="margin-top: 20px;">Fonctionnalités</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check-circle"></i> Grille d'articles responsive</li>
+                                    <li><i class="fas fa-check-circle"></i> Galerie photos avec lightbox</li>
+                                    <li><i class="fas fa-check-circle"></i> Catégories de voyages</li>
+                                    <li><i class="fas fa-check-circle"></i> Système de commentaires (UI)</li>
+                                    <li><i class="fas fa-check-circle"></i> Barre de recherche</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <h4>Technologies utilisées</h4>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">CSS Grid</span>
+                                    <span class="tech-tag">UI Design</span>
+                                </div>
+                                <h4 style="margin-top: 20px;">Lien du projet</h4>
+                                <a href="#" class="btn-view-project">
+                                    <i class="fab fa-github"></i> Voir sur GitHub
+                                </a>
+                                <a href="#" class="btn-view-project" style="margin-left: 10px;">
+                                    <i class="fas fa-external-link-alt"></i> Voir la maquette
+                                </a>
+                            </div>
+                            <div class="project-image-preview">
+                                <i class="fas fa-camera-retro"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3: Application Météo -->
+                <div class="project-item" id="project3">
+                    <div class="project-header" onclick="toggleProject(this)">
+                        <h3>
+                            <i class="fas fa-cloud-sun"></i>
+                            Application météo
+                        </h3>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="project-preview">
+                        Interface utilisateur pour une app météo (HTML/CSS/JS).
+                    </div>
+                    <div class="project-details">
+                        <div class="details-content">
+                            <div class="project-description-full">
+                                <h4>À propos du projet</h4>
+                                <p>Cette application météo affiche les prévisions pour différentes villes. L'interface utilisateur est moderne et intuitive, avec des icônes météo dynamiques et des animations.</p>
+                                <p>L'application utilise l'API OpenWeatherMap pour récupérer les données météo en temps réel et les afficher de manière claire et attrayante.</p>
+                                <h4 style="margin-top: 20px;">Fonctionnalités</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check-circle"></i> Recherche de villes</li>
+                                    <li><i class="fas fa-check-circle"></i> Affichage température, humidité, vent</li>
+                                    <li><i class="fas fa-check-circle"></i> Icônes météo dynamiques</li>
+                                    <li><i class="fas fa-check-circle"></i> Prévisions sur 5 jours</li>
+                                    <li><i class="fas fa-check-circle"></i> Géolocalisation automatique</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <h4>Technologies utilisées</h4>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">API REST</span>
+                                    <span class="tech-tag">Fetch API</span>
+                                    <span class="tech-tag">LocalStorage</span>
+                                </div>
+                                <h4 style="margin-top: 20px;">Lien du projet</h4>
+                                <a href="#" class="btn-view-project">
+                                    <i class="fab fa-github"></i> Voir sur GitHub
+                                </a>
+                                <a href="#" class="btn-view-project" style="margin-left: 10px;">
+                                    <i class="fas fa-external-link-alt"></i> Demo en ligne
+                                </a>
+                            </div>
+                            <div class="project-image-preview">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4: Site e-commerce -->
+                <div class="project-item" id="project4">
+                    <div class="project-header" onclick="toggleProject(this)">
+                        <h3>
+                            <i class="fas fa-shopping-cart"></i>
+                            Site e-commerce
+                        </h3>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="project-preview">
+                        Page d'accueil pour une boutique en ligne (design moderne).
+                    </div>
+                    <div class="project-details">
+                        <div class="details-content">
+                            <div class="project-description-full">
+                                <h4>À propos du projet</h4>
+                                <p>Ce projet est une page d'accueil pour une boutique en ligne fictive. Le design moderne met en valeur les produits avec une mise en page attrayante et des appels à l'action clairs.</p>
+                                <p>L'interface comprend une barre de navigation, un hero banner, une grille de produits, et une section newsletter.</p>
+                                <h4 style="margin-top: 20px;">Fonctionnalités</h4>
+                                <ul class="features-list">
+                                    <li><i class="fas fa-check-circle"></i> Design moderne et épuré</li>
+                                    <li><i class="fas fa-check-circle"></i> Grille de produits responsive</li>
+                                    <li><i class="fas fa-check-circle"></i> Filtres par catégorie</li>
+                                    <li><i class="fas fa-check-circle"></i> Panier d'achat (interface)</li>
+                                    <li><i class="fas fa-check-circle"></i> Newsletter</li>
+                                </ul>
+                            </div>
+                            <div class="tech-stack">
+                                <h4>Technologies utilisées</h4>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Bootstrap</span>
+                                    <span class="tech-tag">UI/UX</span>
+                                    </div>
+                                <h4 style="margin-top: 20px;">Lien du projet</h4>
+                                <a href="#" class="btn-view-project">
+                                    <i class="fab fa-github"></i> Voir sur GitHub
+                                </a>
+                                <a href="#" class="btn-view-project" style="margin-left: 10px;">
+                                    <i class="fas fa-external-link-alt"></i> Voir la maquette
+                                </a>
+                            </div>
+                            <div class="project-image-preview">
+                                <i class="fas fa-store"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-menu">
+                <a href="accueil.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a>
+                <a href="competences.html" class="nav-link"><i class="fas fa-code"></i> Compétences</a>
+                <a href="projets.html" class="nav-link active"><i class="fas fa-project-diagram"></i> Projets</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Bibiche Sangwa - Tous droits réservés</p>
+    </footer>
+
+    <script>
+        function toggleProject(header) {
+            const projectItem = header.closest('.project-item');
+            projectItem.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>
